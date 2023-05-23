@@ -3,4 +3,4 @@ kind: Kustomization
 
 namespace: argocd
 resources:
-- github.com/argoproj/argo-cd/manifests/ha?ref=v2.6.2
+- https://github.com/argoproj/argo-cd/manifests/ha?ref=v2.6.2
