@@ -34,7 +34,7 @@ spec:
         #   annotations:
         #     run.tanzu.vmware.com/resolve-os-image: os-name=photon,os-version=3,os-arch=amd64
         name: md-0
-        replicas: 2
+        replicas: 3
         variables:
           overrides:
           - name: vmClass
