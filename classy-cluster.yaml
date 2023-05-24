@@ -1,0 +1,43 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: blk-sandbox-dodd-classy
+  namespace: admin
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 172.20.0.0/16
+    serviceDomain: cluster.local
+    services:
+      cidrBlocks:
+      - 10.96.0.0/16
+  topology:
+    class: tanzukubernetescluster
+    controlPlane:
+      replicas: 1
+    variables:
+    - name: defaultStorageClass
+      value: vc01cl01-t0compute
+    - name: vmClass
+      value: best-effort-xlarge
+    - name: storageClass
+      value: vc01cl01-t0compute
+    - name: storageClasses
+      value:
+      - vc01cl01-t0compute
+    version: v1.24.9+vmware.1
+    workers:
+      machineDeployments:
+      - class: node-pool
+        # metadata:
+        #   annotations:
+        #     run.tanzu.vmware.com/resolve-os-image: os-name=photon,os-version=3,os-arch=amd64
+        name: md-0
+        replicas: 2
+        variables:
+          overrides:
+          - name: vmClass
+            value: best-effort-xlarge
+          - name: storageClass
+            value: vc01cl01-t0compute
