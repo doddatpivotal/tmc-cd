@@ -3,4 +3,4 @@ kind: Kustomization
 
 namespace: argocd
 resources:
-- git::https://github.com/argoproj/argo-cd/manifests/install.yaml?ref=v2.6.2
+- raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml
