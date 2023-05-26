@@ -17,22 +17,20 @@ spec:
     controlPlane:
       replicas: 1
     variables:
-    - name: defaultStorageClass
-      value: vc01cl01-t0compute
     - name: vmClass
       value: best-effort-xlarge
-    - name: storageClass
-      value: vc01cl01-t0compute
     - name: storageClasses
       value:
       - vc01cl01-t0compute
+    - name: defaultStorageClass
+      value: vc01cl01-t0compute
+    - name: storageClass
+      value: vc01cl01-t0compute
     version: v1.24.9+vmware.1
     workers:
       machineDeployments:
       - class: node-pool
-        # metadata:
-        #   annotations:
-        #     run.tanzu.vmware.com/resolve-os-image: os-name=photon,os-version=3,os-arch=amd64
+        metadata: {}
         name: md-0
         replicas: 2
         variables:
