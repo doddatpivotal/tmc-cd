@@ -42,6 +42,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: minio
+  namespace: default
 spec:
   packageRef:
     refName: minio.external.demo-dependencies.learn
