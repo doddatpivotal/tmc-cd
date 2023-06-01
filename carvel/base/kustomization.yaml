@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - acme-fitness-packageinstall.yaml
   - packagerepo.yaml
-  - rback.yaml  
+  - rbac.yaml  
