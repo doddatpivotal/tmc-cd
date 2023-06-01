@@ -1,0 +1,15 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: acme-fitness
+  namespace: tanzu-fluxcd-packageinstalls
+spec:
+  packageRef:
+    refName: acme-fitness.external.demo-dependencies.learn
+    versionSelection:
+      prereleases: {}
+      constraints: 1.0.0
+  serviceAccountName: acme-fitness-sa
+  # values:
+  # - secretRef:
+  #     name: tap-values
