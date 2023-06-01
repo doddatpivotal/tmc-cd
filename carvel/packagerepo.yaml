@@ -1,7 +1,7 @@
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
-  name: demo-dependencies-package-repository
+  name: acme-fitness-package-repository
   namespace: tanzu-package-repo-global
 spec:
   fetch:
