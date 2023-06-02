@@ -31,19 +31,6 @@ spec:
     services:
       cidrBlocks:
       - 10.96.0.0/16
-  controlPlaneEndpoint:
-    host: 10.220.14.126
-    port: 6443
-  controlPlaneRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-    kind: KubeadmControlPlane
-    name: blk-sandbox-2-68ssl
-    namespace: admin
-  infrastructureRef:
-    apiVersion: vmware.infrastructure.cluster.x-k8s.io/v1beta1
-    kind: VSphereCluster
-    name: blk-sandbox-2-8vrjh
-    namespace: admin
   topology:
     class: tanzukubernetescluster
     controlPlane:
