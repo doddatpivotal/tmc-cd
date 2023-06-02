@@ -1,23 +1,8 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  annotations:
-    tkg.tanzu.vmware.com/skip-tls-verify: ""
-    tkg.tanzu.vmware.com/tkg-http-proxy: ""
-    tkg.tanzu.vmware.com/tkg-https-proxy: ""
-    tkg.tanzu.vmware.com/tkg-ip-family: ""
-    tkg.tanzu.vmware.com/tkg-no-proxy: ""
-    tkg.tanzu.vmware.com/tkg-proxy-ca-cert: ""
-  finalizers:
-  - cluster.cluster.x-k8s.io
-  labels:
-    argocd.argoproj.io/instance: clusters
-    cluster.x-k8s.io/cluster-name: blk-sandbox-2
-    run.tanzu.vmware.com/tkr: v1.23.15---vmware.1-tkg.4
-    topology.cluster.x-k8s.io/owned: ""
   name: blk-sandbox-2
   namespace: admin
-  uid: d79b4d35-8c28-430f-ad87-97b44d2143f7
 spec:
   clusterNetwork:
     pods:
@@ -27,74 +12,21 @@ spec:
     services:
       cidrBlocks:
       - 10.96.0.0/16
-  controlPlaneEndpoint:
-    host: 10.220.14.126
-    port: 6443
-  controlPlaneRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-    kind: KubeadmControlPlane
-    name: blk-sandbox-2-4trrw
-    namespace: admin
-  infrastructureRef:
-    apiVersion: vmware.infrastructure.cluster.x-k8s.io/v1beta1
-    kind: VSphereCluster
-    name: blk-sandbox-2-2bn65
-    namespace: admin
   topology:
     class: tanzukubernetescluster
     controlPlane:
       metadata: {}
       replicas: 1
     variables:
-    - name: ntp
-      value: time1.oc.vmware.com
-    - name: user
-      value:
-        passwordSecret:
-          key: ssh-passwordkey
-          name: blk-sandbox-2-ssh-password-hashed
-        sshAuthorizedKey: |
-          ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDyi5rfeZW02j5of4sIyGi1IxJY4Ac4geS2SEU9n40RToNGzQe6Z/utpQ6+9UcRdKvuIHUVlP3GOpFaKnw7LogCQcv1V5tLNpWNGswSGmh/q5ulmG8iu4mUzeKKQ3+ajuuXKLntXxg70t3UG+mz+zKoDjjzhbiBFDiHPKCz67j3DyhOVB46OiqBMQEvSWcFutbWUpz2Fw6fbKUhPloNTdlANIJxLHsM/ByERLily8sSSsIvvxvJVq4aWCy0WGT749Kryq6dS7U4oA86/qCM4QA1u2LGhgs0Cp0RKYhp0FffkN1mfGe6+RtVpD1FV1tvkvSyRxq6JIJ/j1fzw8S+TxzJGMMFn/sV6FXmkPGuzBNjGDghIMEWEr/9XeyHAbBnQNEZxLKPBDY48kAiisjvyGDraqacupduKqbovHenw/RAzBLBGQW0XD+IkNi842KZn3AKDUuPcoMZ5x/+QmVOSnKPefLiPGOUBOnu9CPbUL3NB8T8D0HbyKLZkuzyJXBqGlWDqD4aYNQIEEIfrtLZKPb/5TBKkO8QVN38HVq0/oFljncEDH9TyopoehBTHifVAPc4+iMLPVQkmfGrAS4sDNSg85BvHY5HVGVCNjbfBcJtk9ICEc/leoUD2uGcnZXgdrhIo91xOATLf2kmMjEZFbLZMAffQhM4XhBvVy03kp36sQ==
-    - name: clusterEncryptionConfigYaml
-      value: LS0tCmFwaVZlcnNpb246IGFwaXNlcnZlci5jb25maWcuazhzLmlvL3YxCmtpbmQ6IEVuY3J5cHRpb25Db25maWd1cmF0aW9uCnJlc291cmNlczoKICAtIHJlc291cmNlczoKICAgIC0gc2VjcmV0cwogICAgcHJvdmlkZXJzOgogICAgLSBhZXNjYmM6CiAgICAgICAga2V5czoKICAgICAgICAtIG5hbWU6IGtleTEKICAgICAgICAgIHNlY3JldDogcGRwNUFMMHJibER6ajQ5dVNLdStkV1Rzc3M2OUg0b0I3RFBRRHFNVDU5Zz0KICAgIC0gaWRlbnRpdHk6IHt9Cg==
     - name: defaultStorageClass
       value: vc01cl01-t0compute
-    - name: storageClasses
-      value:
-      - vc01cl01-t0compute
-    - name: extensionCert
-      value:
-        contentSecret:
-          key: tls.crt
-          name: blk-sandbox-2-extensions-ca
     - name: vmClass
       value: best-effort-medium
     - name: storageClass
       value: vc01cl01-t0compute
-    - name: TKR_DATA
+    - name: storageClasses
       value:
-        v1.23.15+vmware.1:
-          kubernetesSpec:
-            coredns:
-              imageTag: v1.8.6_vmware.11
-            etcd:
-              imageTag: v3.5.6_vmware.2
-            imageRepository: localhost:5000/vmware.io
-            kube-vip: null
-            pause:
-              imageTag: "3.6"
-            version: v1.23.15+vmware.1
-          labels:
-            image-type: vmi
-            os-arch: amd64
-            os-name: photon
-            os-type: linux
-            os-version: "3"
-            run.tanzu.vmware.com/os-image: ob-21554505-photon-3-amd64-vmi-k8s-v1.23.15---vmware.1-tkg.4
-            run.tanzu.vmware.com/tkr: v1.23.15---vmware.1-tkg.4
-            vmi-name: ob-21554505-photon-3-amd64-vmi-k8s-v1.23.15---vmware.1-tkg.4
-          osImageRef:
-            name: ob-21554505-photon-3-amd64-vmi-k8s-v1.23.15---vmware.1-tkg.4
+      - vc01cl01-t0compute
     version: v1.23.15+vmware.1
     workers:
       machineDeployments:
