@@ -1,0 +1,11 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: acme-fitness-package-repository
+  namespace: tanzu-package-repo-global
+spec:
+  fetch:
+    git:
+      url: https://github.com/doddatpivotal/acme-fitness-package-repo
+      ref: origin/main
+      subPath: package-repo

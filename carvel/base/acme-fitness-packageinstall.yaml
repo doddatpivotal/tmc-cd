@@ -1,0 +1,33 @@
+# #@ load("@ytt:data", "data")
+# ---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: acme-fitness
+  namespace: tanzu-fluxcd-packageinstalls
+  annotations:
+    # ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: my-overlay-secret
+spec:
+  packageRef:
+    refName: acme-fitness.external.demo-dependencies.learn
+    versionSelection:
+      prereleases: {}
+      constraints: 1.0.0
+  serviceAccountName: acme-fitness-sa
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: my-overlay-secret
+#   namespace: tanzu-fluxcd-packageinstalls
+# stringData:
+#   #@yaml/text-templated-strings
+#   add-label.yml: |
+#     #@ load("@ytt:overlay", "overlay")
+#     #@overlay/match by=overlay.all, expects="1+"
+#     ---
+#     metadata:
+#       #@overlay/match missing_ok=True
+#       labels:
+#         #@overlay/match missing_ok=True
+#         argocd.argoproj.io/instance: (@= "https://" + data.values.argocd_tracking_label_value @)
