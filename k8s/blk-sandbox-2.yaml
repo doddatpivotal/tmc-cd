@@ -17,7 +17,7 @@ metadata:
     run.tanzu.vmware.com/tkr: v1.23.15---vmware.1-tkg.4
     topology.cluster.x-k8s.io/owned: ""
   name: blk-sandbox-2
-  namespace: sandbox
+  namespace: admin
 spec:
   clusterNetwork:
     pods:
@@ -30,16 +30,6 @@ spec:
   controlPlaneEndpoint:
     host: 10.220.14.126
     port: 6443
-  controlPlaneRef:
-    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-    kind: KubeadmControlPlane
-    name: blk-sandbox-2-ndr4l
-    namespace: admin
-  infrastructureRef:
-    apiVersion: vmware.infrastructure.cluster.x-k8s.io/v1beta1
-    kind: VSphereCluster
-    name: blk-sandbox-2-7tnqp
-    namespace: admin
   topology:
     class: tanzukubernetescluster
     controlPlane:
