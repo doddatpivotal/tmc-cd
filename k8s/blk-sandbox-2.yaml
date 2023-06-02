@@ -17,6 +17,7 @@ metadata:
     topology.cluster.x-k8s.io/owned: ""
   name: blk-sandbox-2
   namespace: admin
+  uid: d79b4d35-8c28-430f-ad87-97b44d2143f7
 spec:
   clusterNetwork:
     pods:
@@ -100,7 +101,7 @@ spec:
       - class: node-pool
         metadata: {}
         name: md-0
-        replicas: 3
+        replicas: 2
         variables:
           overrides:
           - name: vmClass
