@@ -1,6 +1,19 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
+  annotations:
+    tkg.tanzu.vmware.com/skip-tls-verify: ""
+    tkg.tanzu.vmware.com/tkg-http-proxy: ""
+    tkg.tanzu.vmware.com/tkg-https-proxy: ""
+    tkg.tanzu.vmware.com/tkg-ip-family: ""
+    tkg.tanzu.vmware.com/tkg-no-proxy: ""
+    tkg.tanzu.vmware.com/tkg-proxy-ca-cert: ""
+  finalizers:
+  - cluster.cluster.x-k8s.io
+  labels:
+    cluster.x-k8s.io/cluster-name: blk-sandbox-2
+    run.tanzu.vmware.com/tkr: v1.23.15---vmware.1-tkg.4
+    topology.cluster.x-k8s.io/owned: ""
   name: blk-sandbox-2
   namespace: admin
 spec:
@@ -12,14 +25,58 @@ spec:
     services:
       cidrBlocks:
       - 10.96.0.0/16
+  controlPlaneEndpoint:
+    host: 10.220.14.126
+    port: 6443
+  controlPlaneRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    kind: KubeadmControlPlane
+    name: blk-sandbox-2-hkhcd
+    namespace: admin
+  infrastructureRef:
+    apiVersion: vmware.infrastructure.cluster.x-k8s.io/v1beta1
+    kind: VSphereCluster
+    name: blk-sandbox-2-lwtbg
+    namespace: admin
   topology:
     class: tanzukubernetescluster
     controlPlane:
       metadata: {}
       replicas: 1
     variables:
-    - name: defaultStorageClass
-      value: vc01cl01-t0compute
+    - name: clusterEncryptionConfigYaml
+      value: LS0tCmFwaVZlcnNpb246IGFwaXNlcnZlci5jb25maWcuazhzLmlvL3YxCmtpbmQ6IEVuY3J5cHRpb25Db25maWd1cmF0aW9uCnJlc291cmNlczoKICAtIHJlc291cmNlczoKICAgIC0gc2VjcmV0cwogICAgcHJvdmlkZXJzOgogICAgLSBhZXNjYmM6CiAgICAgICAga2V5czoKICAgICAgICAtIG5hbWU6IGtleTEKICAgICAgICAgIHNlY3JldDogVXlCdGp5SDZoYjdqNHZSQWFPSE4xWlRNbXNGWXZ2TjNkMjJqcTAyTzZnYz0KICAgIC0gaWRlbnRpdHk6IHt9Cg==
+    - name: TKR_DATA
+      value:
+        v1.23.15+vmware.1:
+          kubernetesSpec:
+            coredns:
+              imageTag: v1.8.6_vmware.11
+            etcd:
+              imageTag: v3.5.6_vmware.2
+            imageRepository: localhost:5000/vmware.io
+            kube-vip: null
+            pause:
+              imageTag: "3.6"
+            version: v1.23.15+vmware.1
+          labels:
+            image-type: vmi
+            os-arch: amd64
+            os-name: photon
+            os-type: linux
+            os-version: "3"
+            run.tanzu.vmware.com/os-image: ob-21554505-photon-3-amd64-vmi-k8s-v1.23.15---vmware.1-tkg.4
+            run.tanzu.vmware.com/tkr: v1.23.15---vmware.1-tkg.4
+            vmi-name: ob-21554505-photon-3-amd64-vmi-k8s-v1.23.15---vmware.1-tkg.4
+          osImageRef:
+            name: ob-21554505-photon-3-amd64-vmi-k8s-v1.23.15---vmware.1-tkg.4
+    - name: user
+      value:
+        passwordSecret:
+          key: ssh-passwordkey
+          name: blk-sandbox-2-ssh-password-hashed
+        sshAuthorizedKey: |
+          ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDMLt4h/SiGXyqKpCRVF6SpLnaV5RSYP4mZJDAQX8/NsNnJpXZSePHXawlb4O5oIz6pDqLgC5tP9vqhFzrCxq87rTLL1/B9r2FWBlaPIuTfNebWTRoEloKyDvaPyseKDNDDJ896VaiykGqGVPou9fJbb/e9gm6YIRZtro4nc+wOPOMmjYAgREv8oY1QzUuz6+p9oU4BPs8fEuAZpMDGZK7CYTbOHkYAPQzkbOQY+ire3ckpd7V+hBFx2OE/4NmdoGgYMPguTxw71ZyQTPxYS51e4zuTmWcExvPpcG4yQ814NcBcHk2ELNRhTqQq5t/RDx+J77fONTjzNWUNmxz/7IzOvHQbA94l4bBglKjeNkXiLoJk8yGETgCb3snP60nkByPSlFNrrr6bo1qEhvItGhdC/qu50qk50U4oyE4vx8eTArbT93wBs8LV2yeuuqpPKQgNkJksTmV4nhV2HBxMpl+/09hg1gWwnEXWSVYroG1y6aKHWxbaC9sLbaVPORHttnD5EMZ/2pK14cbc3HOIJbwtKljVKkV4rQtvmHOfzlVm7zAOwO+UamFORp/W+iEv1suetkoJvepOAsmhD7Is2p5oFDkvyjxeJcqzeNQVjrj9v6bOVJBO4svCWREuRViRo84QlbvkScVUaMEXDP64UKv0r9GrO5BZF0NCcYyYlb03Bw==
     - name: vmClass
       value: best-effort-medium
     - name: storageClass
@@ -27,6 +84,13 @@ spec:
     - name: storageClasses
       value:
       - vc01cl01-t0compute
+    - name: extensionCert
+      value:
+        contentSecret:
+          key: tls.crt
+          name: blk-sandbox-2-extensions-ca
+    - name: defaultStorageClass
+      value: vc01cl01-t0compute
     version: v1.23.15+vmware.1
     workers:
       machineDeployments:
