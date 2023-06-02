@@ -2,7 +2,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: blk-sandbox-3
-  namespace: admin
+  namespace: sandbox
 spec:
   clusterNetwork:
     pods:
@@ -33,7 +33,7 @@ spec:
       - class: node-pool
         metadata: {}
         name: md-0
-        replicas: 3
+        replicas: 2
         variables:
           overrides:
           - name: vmClass
