@@ -2,7 +2,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: acme-fitness
-  namespace: tanzu-fluxcd-packageinstalls
+  namespace: package-installs
 spec:
   packageRef:
     versionSelection:

@@ -4,7 +4,7 @@ apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
   name: acme-fitness
-  namespace: tanzu-fluxcd-packageinstalls
+  namespace: package-installs
   annotations:
     # ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: my-overlay-secret
 spec:
@@ -19,7 +19,7 @@ spec:
 # kind: Secret
 # metadata:
 #   name: my-overlay-secret
-#   namespace: tanzu-fluxcd-packageinstalls
+#   namespace: package-installs
 # stringData:
 #   #@yaml/text-templated-strings
 #   add-label.yml: |
