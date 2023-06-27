@@ -1,0 +1,9 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: acme-fitness
+  namespace: package-installs
+spec:
+  packageRef:
+    versionSelection:
+      constraints: 1.0.2
