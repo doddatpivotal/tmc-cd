@@ -1,12 +1,3 @@
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretImport
-metadata:
-  name: blk-values
-  namespace: package-installs
-spec:
-  fromNamespace: blk-platform
----
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
