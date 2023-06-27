@@ -7,3 +7,14 @@ spec:
   packageRef:
     versionSelection:
       constraints: 1.0.2
+  values:
+  - secretRef:
+      name: blk-values
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretImport
+metadata:
+  name: blk-values
+  namespace: package-installs
+spec:
+  fromNamespace: blk-platform
