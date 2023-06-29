@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: guestbook-ui
+  labels:
+    blk.com/client: client-1
+    blk.com/region: west
+    blk.com/app: app-1-guestbook
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: guestbook-ui
