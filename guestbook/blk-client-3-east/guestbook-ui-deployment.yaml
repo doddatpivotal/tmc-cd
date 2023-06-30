@@ -6,6 +6,7 @@ metadata:
     blk.com/client: client-3
     blk.com/region: east
     blk.com/app: app-1-guestbook
+    app.kubernetes.io/part-of: guestbook-ui
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -19,6 +20,7 @@ spec:
         blk.com/client: client-3
         blk.com/region: east
         blk.com/app: app-1-guestbook
+        app.kubernetes.io/part-of: guestbook-ui
     spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2

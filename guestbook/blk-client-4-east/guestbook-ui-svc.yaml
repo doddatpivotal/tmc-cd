@@ -6,6 +6,7 @@ metadata:
     blk.com/client: client-1
     blk.com/region: east
     blk.com/app: app-1-guestbook
+    app.kubernetes.io/part-of: guestbook-ui
 spec:
   ports:
   - port: 80
