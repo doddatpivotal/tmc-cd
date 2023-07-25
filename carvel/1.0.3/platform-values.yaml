@@ -4,4 +4,4 @@ metadata:
   name: platform-values
   namespace: package-installs
 spec:
-  fromNamespace: blk-platform
+  fromNamespace: platform
