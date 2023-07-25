@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"cluster.x-k8s.io/v1beta1","kind":"Cluster","metadata":{"annotations":{},"labels":{"argocd.argoproj.io/instance":"clusters"},"name":"blk-sandbox-2","namespace":"admin"},"spec":{"clusterNetwork":{"pods":{"cidrBlocks":["172.20.0.0/16"]},"serviceDomain":"cluster.local","services":{"cidrBlocks":["10.96.0.0/16"]}},"topology":{"class":"tanzukubernetescluster","controlPlane":{"metadata":{},"replicas":1},"variables":[{"name":"defaultStorageClass","value":"vc01cl01-t0compute"},{"name":"vmClass","value":"best-effort-medium"},{"name":"storageClass","value":"vc01cl01-t0compute"},{"name":"storageClasses","value":["vc01cl01-t0compute"]}],"version":"v1.23.15+vmware.1","workers":{"machineDeployments":[{"class":"node-pool","metadata":{},"name":"md-0","replicas":2,"variables":{"overrides":[{"name":"vmClass","value":"best-effort-medium"},{"name":"storageClass","value":"vc01cl01-t0compute"}]}}]}}}}
+      {"apiVersion":"cluster.x-k8s.io/v1beta1","kind":"Cluster","metadata":{"annotations":{},"labels":{"argocd.argoproj.io/instance":"clusters"},"name":"sandbox-2","namespace":"admin"},"spec":{"clusterNetwork":{"pods":{"cidrBlocks":["172.20.0.0/16"]},"serviceDomain":"cluster.local","services":{"cidrBlocks":["10.96.0.0/16"]}},"topology":{"class":"tanzukubernetescluster","controlPlane":{"metadata":{},"replicas":1},"variables":[{"name":"defaultStorageClass","value":"vc01cl01-t0compute"},{"name":"vmClass","value":"best-effort-medium"},{"name":"storageClass","value":"vc01cl01-t0compute"},{"name":"storageClasses","value":["vc01cl01-t0compute"]}],"version":"v1.23.15+vmware.1","workers":{"machineDeployments":[{"class":"node-pool","metadata":{},"name":"md-0","replicas":2,"variables":{"overrides":[{"name":"vmClass","value":"best-effort-medium"},{"name":"storageClass","value":"vc01cl01-t0compute"}]}}]}}}}
     run.tanzu.vmware.com/nodepool-status: '{"md-0":{"name":"md-0","phase":"ScalingUp","uid":"dad993a2-1514-4c22-aa3d-cc65593fd0fa","creationTimestamp":"2023-06-02T15:36:23Z","updateTimestamp":"2023-06-02T15:36:23Z","resourceVersion":"17804046"}}'
     tkg.tanzu.vmware.com/skip-tls-verify: ""
     tkg.tanzu.vmware.com/tkg-http-proxy: ""
@@ -17,10 +17,10 @@ metadata:
   - tkg.tanzu.vmware.com/addon
   labels:
     argocd.argoproj.io/instance: clusters
-    cluster.x-k8s.io/cluster-name: blk-sandbox-2
+    cluster.x-k8s.io/cluster-name: sandbox-2
     run.tanzu.vmware.com/tkr: v1.23.15---vmware.1-tkg.4
     topology.cluster.x-k8s.io/owned: ""
-  name: blk-sandbox-2
+  name: sandbox-2
   namespace: admin
   uid: c989aa1a-b306-49d6-b4cb-35ad5a38e6b1
 spec:
@@ -38,12 +38,12 @@ spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: KubeadmControlPlane
-    name: blk-sandbox-2-ljfg6
+    name: sandbox-2-ljfg6
     namespace: admin
   infrastructureRef:
     apiVersion: vmware.infrastructure.cluster.x-k8s.io/v1beta1
     kind: VSphereCluster
-    name: blk-sandbox-2-6fctz
+    name: sandbox-2-6fctz
     namespace: admin
   topology:
     class: tanzukubernetescluster
@@ -57,7 +57,7 @@ spec:
       value:
         contentSecret:
           key: tls.crt
-          name: blk-sandbox-2-extensions-ca
+          name: sandbox-2-extensions-ca
     - name: defaultStorageClass
       value: vc01cl01-t0compute
     - name: vmClass
@@ -68,7 +68,7 @@ spec:
       value:
         passwordSecret:
           key: ssh-passwordkey
-          name: blk-sandbox-2-ssh-password-hashed
+          name: sandbox-2-ssh-password-hashed
         sshAuthorizedKey: |
           ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIlpDCUue6L5GdRIUTQDDbt5Hnuqx8ZF3T8Wy1wyAD8tI0a1D05ABCO08SR3nPHU8O9vnWymNPRZQRcINfmDqu7ddxmfK9TrrkbauzFlFRXsZQ+w78aJtPU6PyoI1yrcAsKRxMzFU6uTcOq93IiWTK9BDcM6HrAZdEWaSDtxaRRdxkBE+PdK0A/g0CGl7uP9t8Co5aPRtX09JhDAj+1cd8DYO6CQeAdg4TIA2VMFWHSbI9GRxe0T1FGLHxDEN9GisuVptyQniekYjRDPGl+/DcGxa6ty8ZSyBAn0zdxAtpwNX/YCDNB1Rc8FUT8ApuL3JZNLOYxEDsVNd3Zmn2P3CJkUrBq4oib5ZDEEERox4SJ3LIys9GBK6ZRSYpjm+1jhvH1uPAWXaVNK7CPKrhWFDeFmofsR/5aAegeyVZpsMDC5drX8MwJxIVjxsH7hqj+61jl7ZU1izl+vV/TLyiGNAj6hPmHmTbbevK8aq/8deW2sR7FNcoYDgM5n4o5krKiWlRzqi9xRL4jmvH4sHBumk9zaOAPqO/DxbtAVNscC00Dv4b4PafoBleBInujRRrhRqu2YfpeZ6+9vnErbX/oA11fD2feRMJbIRXdz2/R4pg8wkOqPGoZxRcua1fbYp3AuSwgzYRt1sddS/bQNKeL21FLo+ApYLd6xFzFfS23H9tJw==
     - name: clusterEncryptionConfigYaml

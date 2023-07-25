@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: guestbook-ui
   labels:
-    blk.com/client: client-1
-    blk.com/region: east
-    blk.com/app: app-1-guestbook
+    vmware.com/client: client-1
+    vmware.com/region: east
+    vmware.com/app: app-1-guestbook
     app.kubernetes.io/part-of: guestbook-ui
 spec:
   ports:

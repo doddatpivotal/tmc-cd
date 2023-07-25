@@ -9,4 +9,4 @@ spec:
       constraints: 1.0.2
   values:
   - secretRef:
-      name: blk-values
+      name: platform-values
